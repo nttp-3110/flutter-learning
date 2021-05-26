@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
-import 'HomePage.dart';
-
+import 'Widgets/button_widget.dart';
+import 'Pages/HomePage.dart';
+import 'Widgets/color_utils.dart';
 class LoginFormValidation extends StatefulWidget {
   @override
   _LoginFormValidationState createState() => _LoginFormValidationState();
@@ -12,7 +12,7 @@ class LoginFormValidation extends StatefulWidget {
 class _LoginFormValidationState extends State<LoginFormValidation> {
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
 
-  String validatePassword(String value) {
+  String? validatePassword(String value) {
     if (value.isEmpty) {
       return "* Required";
     } else if (value.length < 6) {
@@ -77,13 +77,15 @@ class _LoginFormValidationState extends State<LoginFormValidation> {
                 ),
                 child: FlatButton(
                   onPressed: () {
-                    if (formkey.currentState.validate()) {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (_) => HomePage()));
-                      print("Validated");
-                    } else {
-                      print("Not Validated");
-                    }
+                    // if (formkey.currentState.validate()) {
+                    //   Navigator.push(context,
+                    //       MaterialPageRoute(builder: (_) => HomePage()));
+                    //   print("Validated");
+                    // } else {
+                    //   print("Not Validated");
+                    // }
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => HomePage()));
                   },
                   child: Text(
                     'Next',
@@ -106,6 +108,86 @@ class _LoginFormValidationState extends State<LoginFormValidation> {
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  // Widget _buildSnackbarButton(BuildContext context) {
+  //   return raisedButton(
+  //       textColor: Colors.white,
+  //       minWidth: 300,
+  //       text: "Show Snackbar",
+  //       height: 50.0,
+  //       borderRadius: 5,
+  //       color: primaryColor,
+  //       borderSideColor: Colors.white,
+  //       splashColor: Colors.blue[200],
+  //       style: TextStyle(
+  //         color: primaryColor,
+  //         fontSize: 14.0,
+  //         fontWeight: FontWeight.w500,
+  //         fontStyle: FontStyle.normal,
+  //         letterSpacing: 1.2,
+  //       ),
+  //       onClick: () {});
+  // }
+}
+
+// // Home Screen
+// class HomePage extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text(
+//           'Kindacode.com',
+//           style: Theme.of(context).appBarTheme.titleTextStyle,
+//         ),
+//         actions: [
+//           IconButton(
+//             icon: Icon(Icons.home),
+//             onPressed: () {},
+//           )
+//         ],
+//       ),
+//       body: Center(
+//         child: ElevatedButton(
+//             child: Text(
+//               'Go To About Screen',
+//             ),
+//             onPressed: () {
+//               Navigator.push(context,
+//                   MaterialPageRoute(builder: (context) => AboutPage()));
+//             }),
+//       ),
+//     );
+//   }
+// }
+
+// About Screen
+class AboutPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        // Override the global settings
+        title: Text(
+          'About Screen',
+          style: Theme.of(context)
+              .appBarTheme
+              .titleTextStyle!
+              .copyWith(color: Colors.white),
+        ),
+        centerTitle: true,
+        actions: [IconButton(icon: Icon(Icons.info), onPressed: () {})],
+      ),
+      body: Center(
+        child: ElevatedButton(
+            child: Text('Go to Contact screen'),
+            onPressed: () {
+              // Navigator.push(context,
+              //     MaterialPageRoute(builder: (context) => ContactPage()));
+            }),
       ),
     );
   }
