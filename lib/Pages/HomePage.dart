@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import './AboutPage.dart';
 import './ThemePage.dart';
+import 'Todo/TodoPage.dart';
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -22,7 +23,7 @@ class _HomePageState extends State<HomePage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.mail),
-            title: Text("Demo"),
+            title: Text("Todo"),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
@@ -40,7 +41,7 @@ class _HomePageState extends State<HomePage> {
     if(this.selectedIndex == 0) {
       return ThemePage();
     } else if(this.selectedIndex==1) {
-      return AboutPage();
+      return TodoPage();
     } else {
       return AboutPage();
     }
